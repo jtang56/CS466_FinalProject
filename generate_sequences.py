@@ -2,7 +2,6 @@ from numpy.random import dirichlet
 from numpy.random import randint
 import numpy as np
 from numpy.random import rand
-#from sampling import sample
 
 def sampler(alphabet, dist):
 	sample = None
@@ -14,9 +13,9 @@ def sampler(alphabet, dist):
 			break
 	return sample
 
-num_sequences = 20 			#Number of sequences
-sequence_length = 500		#Length of each sequence
-motif_length = 45						#Motif length
+num_sequences = 20 		
+sequence_length = 500	
+motif_length = 15	
 
 alphabet = ['A', 'C', 'T', 'G']	
 
