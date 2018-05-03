@@ -14,32 +14,31 @@ def sampler(alphabet, dist):
 			break
 	return sample
 
-K = 10
-N = 150
-w = 6
+num_sequences = 20 			#Number of sequences
+sequence_length = 500		#Length of each sequence
+motif_length = 45						#Motif length
 
 alphabet = ['A', 'C', 'T', 'G']	
-M = len(alphabet)
 
-alpha_b = [1] * M
-alpha_w = [10,2,8,3]
+alpha_b = [1, 1, 1, 1]
+alpha_w = [3, 9, 1, 6]
 
-position = [0] * K
-for i in xrange(K):
-	position[i] = randint(0, N - w+1)
+position = [0] * num_sequences
+for i in xrange(num_sequences):
+	position[i] = randint(0, sequence_length - motif_length + 1)
 	
 cat_b = dirichlet(alpha_b)
 sequences = []
-for i in xrange(K):
+for i in xrange(num_sequences):
 	seq = []
-	for j in xrange(N):
+	for j in xrange(sequence_length):
 		seq += [sampler(alphabet, cat_b)]
 	sequences += [seq]
 
-theta = dirichlet(alpha_w, w)
-for i in xrange(K):
+theta = dirichlet(alpha_w, motif_length)
+for i in xrange(num_sequences):
 	start_pos = position[i]
-	for j in xrange(w):
+	for j in xrange(motif_length):
 		sequences[i][start_pos+j] = sampler(alphabet, theta[j])
 
 filename = 'sequences.fa'
