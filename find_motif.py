@@ -8,7 +8,7 @@ from random import choice
 def main():
 	start = time.time()
 	data = begin()
-	g = Motif(sequences=data['sequences'], motif_length=data['length'])
+	g = Motif(data['sequences'], data['length'])
 	g.find_motif()
 	end = time.time()
 	print("Time taken: " + str(end - start))
